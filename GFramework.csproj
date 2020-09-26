@@ -41,7 +41,10 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\AppFacade.cs" />
-    <Compile Include="src\Base\BindableProperty.cs" />
+    <Compile Include="src\Base\AppServices.cs" />
+    <Compile Include="src\Base\CommonService.cs" />
+    <Compile Include="src\Interfaces\IService.cs" />
+    <Compile Include="src\Util\BindableProperty.cs" />
     <Compile Include="src\Base\DefinedID.cs" />
     <Compile Include="src\Base\Facade.cs" />
     <Compile Include="src\Base\GlobalDispenser.cs" />
