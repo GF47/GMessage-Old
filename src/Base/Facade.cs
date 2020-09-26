@@ -9,7 +9,7 @@ namespace GFramework
     public abstract class Facade
     {
         protected IDispenser dispenser = GlobalDispenser.Instance;
-        protected AppServices services = AppServices.Instance;
+        protected GlobalServices services = GlobalServices.Instance;
 
         public virtual void BindingCommand(Type command, int messageID)
         {

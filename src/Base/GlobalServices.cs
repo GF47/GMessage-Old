@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace GFramework
 {
-    public partial class AppServices
+    public partial class GlobalServices
     {
-        public static AppServices Instance
+        public static GlobalServices Instance
         {
             get
             {
@@ -13,19 +13,19 @@ namespace GFramework
                 {
                     if (_instance == null)
                     {
-                        _instance = new AppServices();
+                        _instance = new GlobalServices();
                     }
                 }
                 return _instance;
             }
         }
-        private static AppServices _instance;
+        private static GlobalServices _instance;
 
         private static object _syncLock = new object();
 
         private Dictionary<int, IService> _services;
 
-        private AppServices() 
+        private GlobalServices() 
         {
             _services = new Dictionary<int, IService>();
         }
