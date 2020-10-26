@@ -70,6 +70,7 @@ namespace GFramework
         public R CallService<T1, T2,         R>(int id, T1 arg1, T2 arg2                  ) { return services.CallService<T1, T2,         R>(id, arg1, arg2            ); }
         public R CallService<T1,             R>(int id, T1 arg1                           ) { return services.CallService<T1,             R>(id, arg1                  ); }
         public R CallService<                R>(int id                                    ) { return services.CallService<                R>(id                        ); }
+        public Delegate GetServiceCall         (int id                                    ) { return services.GetServiceCall                (id                        ); }
         // public T CallService<T>(int id, object sender, params object[] args) { return services.CallService<T>(id, sender, args); }
 
         public abstract T GetModule<T>(int moduleID) where T : Module;

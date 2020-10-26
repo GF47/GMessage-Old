@@ -92,6 +92,15 @@ namespace GFramework
             return result;
         }
 
+        public Delegate GetServiceCall(int id)
+        {
+            if (_services.TryGetValue(id, out IService service))
+            {
+                return service.Call;
+            }
+            return null;
+        }
+
         // public T CallService<T>(int id, object sender, object[] args)
         // {
         //     T result = default;
