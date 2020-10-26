@@ -62,12 +62,12 @@ namespace GenerateUniqueID
 
                     string s = string.Format(
                         "\n\n" +
-                        "       /// <summary>\n" +
-                        "       /// {0}\n" +
-                        "       /// <para>message type: {1}\n" +
-                        "       /// <summary>\n" +
-                        "       [System.ComponentModel.Description(\"{0}, message: {1}\")]\n" +
-                        "       public const int {1} = {2};\n",
+                        "        /// <summary>\n" +
+                        "        /// {0}\n" +
+                        "        /// <para>message type: {1}\n" +
+                        "        /// <summary>\n" +
+                        "        [System.ComponentModel.Description(\"{0}, message: {1}\")]\n" +
+                        "        public const int {1} = {2};\n",
                         comment, messageType, name, (int)DateTime.UtcNow.ToBinary());
 
                     byte[] sb = Encoding.UTF8.GetBytes(s);

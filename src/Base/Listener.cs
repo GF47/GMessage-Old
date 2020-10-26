@@ -16,7 +16,7 @@ namespace GFramework
         /// <summary>
         /// Module的单例 或者 GlobalDispenser的单例
         /// </summary>
-        public abstract T GetDispenser();
+        protected abstract T GetDispenser();
 
         public void RegisterMessage(IListener listener, IList<int> messageID)
         {

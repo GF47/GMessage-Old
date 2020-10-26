@@ -35,12 +35,12 @@
 
         private void __InitModule()
         {
-            // TODO 初始化模块，如果模块类继承自MonoBehaviour，则自行在Awake中初始化
+            // HACK 初始化模块，如果模块类继承自MonoBehaviour，则自行在Awake中初始化
         }
 
         private void __BindingCommands()
         {
-            // TODO 绑定必要的消息
+            // HACK 绑定必要的消息
         }
     }
 }

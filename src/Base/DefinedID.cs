@@ -11,7 +11,7 @@
             public const int MESSAGE_NAME = 0;
         */
 
-        // TODO 自定义消息
+        // HACK 自定义消息
     }
     public static partial class ModuleID
     {
@@ -20,7 +20,7 @@
         /// </summary>
         public const int GLOBAL_DISPENSER = 0;
 
-        // TODO 模块id，不能重复
+        // HACK 模块id，不能重复
 
     }
 
