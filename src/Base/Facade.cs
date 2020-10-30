@@ -8,19 +8,19 @@ namespace GFramework
     /// </summary>
     public abstract class Facade
     {
-        protected IDispenser dispenser = GlobalDispenser.Instance;
+        protected IDispatcher dispatcher = GlobalDispatcher.Instance;
         protected GlobalServices services = GlobalServices.Instance;
 
         public virtual void BindingCommand(Type command, int messageID)
         {
-            dispenser.BindingCommand(command, messageID);
+            dispatcher.BindingCommand(command, messageID);
         }
 
         public void BindingVariableCommands(Type command, IList<int> messageID)
         {
             for (int i = 0; i < messageID.Count; i++)
             {
-                dispenser.BindingCommand(command, messageID[i]);
+                dispatcher.BindingCommand(command, messageID[i]);
             }
         }
 
@@ -28,38 +28,38 @@ namespace GFramework
         {
             for (int i = 0; i < messageID.Length; i++)
             {
-                dispenser.BindingCommand(command, messageID[i]);
+                dispatcher.BindingCommand(command, messageID[i]);
             }
         }
 
         public void UnBindingCommand(int messageID)
         {
-            dispenser.UnBindingCommand(messageID);
+            dispatcher.UnBindingCommand(messageID);
         }
         public void UnBindingVariableCommands(IList<int> messageID)
         {
             for (int i = 0; i < messageID.Count; i++)
             {
-                dispenser.UnBindingCommand(messageID[i]);
+                dispatcher.UnBindingCommand(messageID[i]);
             }
         }
         public void UnBindingVariableCommands(params int[] messageID)
         {
             for (int i = 0; i < messageID.Length; i++)
             {
-                dispenser.UnBindingCommand(messageID[i]);
+                dispatcher.UnBindingCommand(messageID[i]);
             }
         }
 
-        public void SendMessage(int messageID, object sender = null, object content = null, IDispenser dispenser = null)
+        public void SendMessage(int messageID, object sender = null, object content = null, IDispatcher dispatcher = null)
         {
-            if (dispenser == null)
+            if (dispatcher == null)
             {
-                this.dispenser.Receive(new Message(messageID, sender, content));
+                this.dispatcher.Receive(new Message(messageID, sender, content));
             }
             else
             {
-                dispenser.Receive(new Message(messageID, sender, content));
+                dispatcher.Receive(new Message(messageID, sender, content));
             }
         }
 

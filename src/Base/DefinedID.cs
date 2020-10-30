@@ -18,7 +18,7 @@
         /// <summary>
         /// 全局消息分发者
         /// </summary>
-        public const int GLOBAL_DISPENSER = 0;
+        public const int GLOBAL_DISPATCHER = 0;
 
         // HACK 模块id，不能重复
 

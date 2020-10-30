@@ -47,13 +47,13 @@
     <Compile Include="src\Util\BindableProperty.cs" />
     <Compile Include="src\Base\DefinedID.cs" />
     <Compile Include="src\Base\Facade.cs" />
-    <Compile Include="src\Base\GlobalDispenser.cs" />
+    <Compile Include="src\Base\GlobalDispatcher.cs" />
     <Compile Include="src\Base\Listener.cs" />
     <Compile Include="src\Base\MacroCommand.cs" />
     <Compile Include="src\Base\Message.cs" />
     <Compile Include="src\Base\Module.cs" />
     <Compile Include="src\Interfaces\ICommand.cs" />
-    <Compile Include="src\Interfaces\IDispenser.cs" />
+    <Compile Include="src\Interfaces\IDispatcher.cs" />
     <Compile Include="src\Interfaces\IListener.cs" />
     <Compile Include="src\Interfaces\IMessage.cs" />
   </ItemGroup>

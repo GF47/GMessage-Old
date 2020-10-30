@@ -26,8 +26,8 @@
             T module = null;
             switch (moduleID)
             {
-                case ModuleID.GLOBAL_DISPENSER:
-                    module = GlobalDispenser.Instance as T;
+                case ModuleID.GLOBAL_DISPATCHER:
+                    module = GlobalDispatcher.Instance as T;
                     break;
             }
             return module;

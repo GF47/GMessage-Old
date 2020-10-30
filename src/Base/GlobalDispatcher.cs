@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace GFramework
 {
-    public sealed class GlobalDispenser : Module, IDispenser
+    public sealed class GlobalDispatcher : Module, IDispatcher
     {
         private static readonly object staticSyncLocker = new object();
 
-        public static GlobalDispenser Instance
+        public static GlobalDispatcher Instance
         {
             get
             {
@@ -17,16 +17,16 @@ namespace GFramework
                     {
                         if (_instance == null)
                         {
-                            _instance = new GlobalDispenser();
+                            _instance = new GlobalDispatcher();
                         }
                     }
                 }
                 return _instance;
             }
         }
-        private static volatile GlobalDispenser _instance;
+        private static volatile GlobalDispatcher _instance;
 
-        private GlobalDispenser()
+        private GlobalDispatcher()
         {
             commands = new Dictionary<int, Type>();
             listeners = new Dictionary<IListener, List<int>>();

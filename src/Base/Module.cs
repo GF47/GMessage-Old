@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace GFramework
 {
-    public abstract class Module : IDispenser
+    public abstract class Module : IDispatcher
     {
         protected IDictionary<int, Type> commands;
         protected IDictionary<IListener, List<int>> listeners;

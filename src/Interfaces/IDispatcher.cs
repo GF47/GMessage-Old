@@ -2,7 +2,7 @@
 
 namespace GFramework
 {
-    public interface IDispenser : IListener
+    public interface IDispatcher : IListener
     {
         bool Listening(int ID);
 
