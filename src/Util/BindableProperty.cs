@@ -13,7 +13,7 @@ namespace GFramework
             get { return _value; }
             set
             {
-                if (!Equals(_value, Value))
+                if (!Equals(_value, value))
                 {
                     T old = _value;
                     _value = value;

@@ -32,15 +32,13 @@ namespace GFramework
             lock (syncLocker)
             {
                 if (commands.ContainsKey(message.ID)) { expectedCommand = commands[message.ID]; }
-                else
+
+                expectedListeners = new List<IListener>();
+                foreach (var pair in listeners)
                 {
-                    expectedListeners = new List<IListener>();
-                    foreach (var pair in listeners)
+                    if (pair.Value.Contains(message.ID))
                     {
-                        if (pair.Value.Contains(message.ID))
-                        {
-                            expectedListeners.Add(pair.Key);
-                        }
+                        expectedListeners.Add(pair.Key);
                     }
                 }
             }
