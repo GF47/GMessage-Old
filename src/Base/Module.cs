@@ -10,6 +10,12 @@ namespace GFramework
 
         protected readonly object syncLocker = new object();
 
+        protected Module()
+        {
+            commands = new Dictionary<int, Type>();
+            listeners = new Dictionary<IListener, List<int>>();
+        }
+
         public bool Listening(int ID)
         {
             lock (syncLocker)
