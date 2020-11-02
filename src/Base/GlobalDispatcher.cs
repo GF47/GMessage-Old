@@ -3,10 +3,16 @@ using System.Collections.Generic;
 
 namespace GFramework
 {
+    /// <summary>
+    /// 框架内的全局消息派发者
+    /// </summary>
     public sealed class GlobalDispatcher : Module, IDispatcher
     {
-        private static readonly object staticSyncLocker = new object();
+        private static readonly object staticSyncLocker = new object(); // 线程锁
 
+        /// <summary>
+        /// 全局消息派发者的单例
+        /// </summary>
         public static GlobalDispatcher Instance
         {
             get
