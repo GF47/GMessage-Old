@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
 
-namespace Framework
+namespace GFramework
 {
     [Serializable]
     public class Node
