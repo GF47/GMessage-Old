@@ -41,6 +41,8 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\AppFacade.cs" />
+    <Compile Include="src\Base\CommonModule.cs" />
+    <Compile Include="src\Base\CommonView.cs" />
     <Compile Include="src\Base\GlobalServices.cs" />
     <Compile Include="src\Base\CommonService.cs" />
     <Compile Include="src\Interfaces\IService.cs" />

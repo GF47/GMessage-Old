@@ -18,7 +18,7 @@ namespace GFramework
         ICancelHandler
     {
 
-        public int moduleID = ModuleID.GLOBAL_DISPENSER;
+        public int moduleID = ModuleID.GLOBAL_DISPATCHER;
 
         [Serializable]
         public struct MessageData : IEquatable<MessageData>
