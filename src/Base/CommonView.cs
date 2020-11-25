@@ -4,7 +4,7 @@ namespace GFramework
 {
     public class CommonView<TContainer> : Listener<CommonModule>
     {
-        public int ModuleID { get; }
+        public int ModuleID { get; protected set; }
 
         public TContainer ViewContainer { get; set; }
 

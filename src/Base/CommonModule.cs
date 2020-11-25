@@ -13,7 +13,7 @@ namespace GFramework
             }
             else
             {
-                return null;
+                return new CommonModule(id);
             }
         }
         private static readonly Dictionary<int, CommonModule> _instances = new Dictionary<int, CommonModule>();
