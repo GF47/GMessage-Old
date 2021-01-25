@@ -11,9 +11,9 @@ namespace GenerateUniqueID
 
         static void Main(string[] args)
         {
-            if (args.Length < 2)
+            if (args.Length < 2 || args[0] == "/?")
             {
-                Console.WriteLine("Args missing, please input at least 2 args");
+                Console.WriteLine("GenerateUniqueID.exe filepath name [ comment ] [ messageType ]");
                 return;
             }
 
@@ -64,10 +64,10 @@ namespace GenerateUniqueID
                         "\n\n" +
                         "        /// <summary>\n" +
                         "        /// {0}\n" +
-                        "        /// <para>message type: {1}\n" +
-                        "        /// <summary>\n" +
-                        "        [System.ComponentModel.Description(\"{0}, message: {1}\")]\n" +
-                        "        public const int {1} = {2};\n",
+                        "        /// <para>message type: {1}</para>\n" +
+                        "        /// </summary>\n" +
+                        "        [System.ComponentModel.Description(\"{0}, message type: {1}\")]\n" +
+                        "        public const int {2} = {3};\n",
                         comment, messageType, name, (int)DateTime.UtcNow.ToBinary());
 
                     byte[] sb = Encoding.UTF8.GetBytes(s);
