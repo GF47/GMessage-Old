@@ -46,7 +46,7 @@ namespace GFramework
         /// 接收消息，执行相应命令，并将消息通知给下一级的监听者
         /// </summary>
         /// <param name="message">消息体</param>
-        public void Receive(IMessage message)
+        public virtual void Receive(IMessage message)
         {
             Type expectedCommand = null;
             List<IListener> expectedListeners = null;
