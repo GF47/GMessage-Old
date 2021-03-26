@@ -9,6 +9,26 @@ namespace GFramework
     /// </summary>
     public abstract class Module : IDispatcher
     {
+        #region 单例
+
+        /// <summary>
+        /// 通过ID来获取模块单例
+        /// </summary>
+        /// <typeparam name="T">模块类型</typeparam>
+        /// <param name="id">模块ID</param>
+        public static T Instance<T>(int id) where T : Module
+        {
+            return (_instance.TryGetValue(id, out var module) ? module : Activator.CreateInstance(typeof(T), id)) as T;
+        }
+        private static readonly Dictionary<int, Module> _instance = new Dictionary<int, Module>();
+
+        #endregion
+
+        /// <summary>
+        /// 模块ID，不能重复
+        /// </summary>
+        public int ID { get; protected set; }
+
         /// <summary>
         /// 绑定的命令字典，接收消息后查找具体命令并执行
         /// </summary>
@@ -23,10 +43,18 @@ namespace GFramework
         /// <summary>
         /// 默认的构造函数，已经实例化了命令字典和监听者字典，子类的构造函数如果继承自默认构造函数，则无需再次实例化。
         /// </summary>
-        protected Module()
+        protected Module(int id)
         {
+            ID = id;
+            _instance.Add(id, this);
+
             commands = new Dictionary<int, Type>();
             listeners = new Dictionary<IListener, List<int>>();
+        }
+
+        ~Module()
+        {
+            _instance.Remove(ID);
         }
 
         /// <summary>

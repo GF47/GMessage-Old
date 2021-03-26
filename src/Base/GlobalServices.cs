@@ -11,23 +11,8 @@ namespace GFramework
         /// <summary>
         /// 全局框架内服务管理器的单例
         /// </summary>
-        public static GlobalServices Instance
-        {
-            get
-            {
-                lock(_syncLock)
-                {
-                    if (_instance == null)
-                    {
-                        _instance = new GlobalServices();
-                    }
-                }
-                return _instance;
-            }
-        }
+        public static GlobalServices Instance => _instance ?? (_instance = new GlobalServices());
         private static GlobalServices _instance;
-
-        private static object _syncLock = new object(); // 线程锁
 
         private Dictionary<int, IService> _services;
 
@@ -43,11 +28,8 @@ namespace GFramework
         /// <param name="service">服务实例</param>
         public void RegisterService(int id, IService service)
         {
-            lock (_syncLock)
-            {
-                if (_services.ContainsKey(id)) { _services[id] = service; }
-                else { _services.Add(id, service); }
-            }
+            if (_services.ContainsKey(id)) { _services[id] = service; }
+            else { _services.Add(id, service); }
         }
 
         /// <summary>
@@ -56,10 +38,7 @@ namespace GFramework
         /// <param name="id">服务 ID</param>
         public void UnRegisterService(int id)
         {
-            lock (_syncLock)
-            {
-                if (_services.ContainsKey(id)) { _services.Remove(id); }
-            }
+            if (_services.ContainsKey(id)) { _services.Remove(id); }
         }
 
         /// <summary>

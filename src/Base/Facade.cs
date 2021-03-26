@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace GFramework
 {
@@ -12,11 +11,12 @@ namespace GFramework
         /// <summary>
         /// 全局消息派发者
         /// </summary>
-        protected IDispatcher dispatcher = GlobalDispatcher.Instance;
+        protected IDispatcher Dispatcher => GlobalDispatcher.Instance;
+
         /// <summary>
         /// 全局框架内部服务管理器
         /// </summary>
-        protected GlobalServices services = GlobalServices.Instance;
+        protected GlobalServices Services => GlobalServices.Instance;
 
         /// <summary>
         /// 绑定具体的命令和消息，并由全局消息派发者来管理
@@ -25,7 +25,7 @@ namespace GFramework
         /// <param name="messageID">被绑定的消息ID</param>
         public virtual void BindingCommand(Type command, int messageID)
         {
-            dispatcher.BindingCommand(command, messageID);
+            Dispatcher.BindingCommand(command, messageID);
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace GFramework
         /// <param name="messageID">被解绑的消息ID</param>
         public void UnBindingCommand(int messageID)
         {
-            dispatcher.UnBindingCommand(messageID);
+            Dispatcher.UnBindingCommand(messageID);
         }
 
         /// <summary>
@@ -46,14 +46,7 @@ namespace GFramework
         /// <param name="dispatcher">接收消息的消息派发者，默认为 GlobalDispatcher.Instance</param>
         public void SendMessage(int messageID, object sender = null, object content = null, IDispatcher dispatcher = null)
         {
-            if (dispatcher == null)
-            {
-                this.dispatcher.Receive(new Message(messageID, sender, content));
-            }
-            else
-            {
-                dispatcher.Receive(new Message(messageID, sender, content));
-            }
+            (dispatcher ?? Dispatcher).Receive(new Message(messageID, sender, content));
         }
 
         /// <summary>
@@ -61,12 +54,14 @@ namespace GFramework
         /// </summary>
         /// <param name="id">服务ID</param>
         /// <param name="service">服务实例</param>
-        public void RegisterService(int id, IService service) { services.RegisterService(id, service); }
+        public void RegisterService(int id, IService service) { Services.RegisterService(id, service); }
+
         /// <summary>
         /// 解除一个服务
         /// </summary>
         /// <param name="id">服务ID</param>
-        public void UnRegisterService(int id) { services.UnRegisterService(id); }
+        public void UnRegisterService(int id) { Services.UnRegisterService(id); }
+
         /// <summary>
         /// 调用一个内部服务
         /// </summary>
@@ -81,7 +76,8 @@ namespace GFramework
         /// <param name="arg3">参数3</param>
         /// <param name="arg4">参数4</param>
         /// <returns>服务返回值</returns>
-        public R CallService<T1, T2, T3, T4, R>(int id, T1 arg1, T2 arg2, T3 arg3, T4 arg4) { return services.CallService<T1, T2, T3, T4, R>(id, arg1, arg2, arg3, arg4); }
+        public R CallService<T1, T2, T3, T4, R>(int id, T1 arg1, T2 arg2, T3 arg3, T4 arg4) { return Services.CallService<T1, T2, T3, T4, R>(id, arg1, arg2, arg3, arg4); }
+
         /// <summary>
         /// 调用一个内部服务
         /// </summary>
@@ -94,7 +90,8 @@ namespace GFramework
         /// <param name="arg2">参数2</param>
         /// <param name="arg3">参数3</param>
         /// <returns>服务返回值</returns>
-        public R CallService<T1, T2, T3,     R>(int id, T1 arg1, T2 arg2, T3 arg3         ) { return services.CallService<T1, T2, T3,     R>(id, arg1, arg2, arg3      ); }
+        public R CallService<T1, T2, T3, R>(int id, T1 arg1, T2 arg2, T3 arg3) { return Services.CallService<T1, T2, T3, R>(id, arg1, arg2, arg3); }
+
         /// <summary>
         /// 调用一个内部服务
         /// </summary>
@@ -105,7 +102,8 @@ namespace GFramework
         /// <param name="arg1">参数1</param>
         /// <param name="arg2">参数2</param>
         /// <returns>服务返回值</returns>
-        public R CallService<T1, T2,         R>(int id, T1 arg1, T2 arg2                  ) { return services.CallService<T1, T2,         R>(id, arg1, arg2            ); }
+        public R CallService<T1, T2, R>(int id, T1 arg1, T2 arg2) { return Services.CallService<T1, T2, R>(id, arg1, arg2); }
+
         /// <summary>
         /// 调用一个内部服务
         /// </summary>
@@ -114,20 +112,23 @@ namespace GFramework
         /// <param name="id">服务 ID</param>
         /// <param name="arg1">参数1</param>
         /// <returns>服务返回值</returns>
-        public R CallService<T1,             R>(int id, T1 arg1                           ) { return services.CallService<T1,             R>(id, arg1                  ); }
+        public R CallService<T1, R>(int id, T1 arg1) { return Services.CallService<T1, R>(id, arg1); }
+
         /// <summary>
         /// 调用一个内部服务
         /// </summary>
         /// <typeparam name="R">结果类型</typeparam>
         /// <param name="id">服务 ID</param>
         /// <returns>服务返回值</returns>
-        public R CallService<                R>(int id                                    ) { return services.CallService<                R>(id                        ); }
+        public R CallService<R>(int id) { return Services.CallService<R>(id); }
+
         /// <summary>
         /// 直接返回内部服务所包装的方法，调用者可以缓存后重复调用，避免多次查找
         /// </summary>
         /// <param name="id">服务 ID</param>
         /// <returns>服务内包装的方法</returns>
-        public Delegate GetServiceCall         (int id                                    ) { return services.GetServiceCall                (id                        ); }
+        public Delegate GetServiceCall(int id) { return Services.GetServiceCall(id); }
+
         // public T CallService<T>(int id, object sender, params object[] args) { return services.CallService<T>(id, sender, args); }
 
         /// <summary>
