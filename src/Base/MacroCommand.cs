@@ -22,9 +22,10 @@ namespace GFramework
 
         /// <summary>
         /// 在方法中实例化子命令，并放入subCommands
-        /// <example>示例
+        /// <example>
+        /// 示例
         /// <code>
-        /// subCommands = new List<ICommand>();
+        /// subCommands = new List&lt;ICommand&gt;();
         ///
         /// subCommands.Add(new CommandImpl_1());
         /// subCommands.Add(new CommandImpl_2());
