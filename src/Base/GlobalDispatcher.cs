@@ -1,4 +1,4 @@
-﻿namespace GFramework
+﻿namespace GMessage
 {
     /// <summary>
     /// 框架内的全局消息派发者

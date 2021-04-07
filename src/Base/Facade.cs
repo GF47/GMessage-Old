@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GFramework
+namespace GMessage
 {
     /// <summary>
     /// 项目中只存在一个Facade派生类，单例访问

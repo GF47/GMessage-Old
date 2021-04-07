@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GFramework
+namespace GMessage
 {
     /// <summary>
     /// 抽象的多步命令，会按顺序依次执行所附加的子命令

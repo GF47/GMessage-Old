@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GFramework
+namespace GMessage
 {
     /// <summary>
     /// 抽象的消息监听者，需要子类实现消息接收后处理的方法

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace GFramework
+namespace GMessage
 {
     /// <summary>
     /// 抽象的消息派发者，通常是一个具体的模块，所以直接命名为 Module，

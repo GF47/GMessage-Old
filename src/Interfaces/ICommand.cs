@@ -1,4 +1,4 @@
-﻿namespace GFramework
+﻿namespace GMessage
 {
     /// <summary>
     /// 自定义的命令，绑定具体消息后，会执行 Execute(IMessage message) 方法

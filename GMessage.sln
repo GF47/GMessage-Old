@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GFramework", "GFramework.csproj", "{FD4E5A2C-A491-443D-A456-C2587D0AEE1E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMessage", "GMessage.csproj", "{FD4E5A2C-A491-443D-A456-C2587D0AEE1E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenerateUniqueID", "GenerateUniqueID\GenerateUniqueID.csproj", "{35537BE5-98FA-4E8B-BF30-382B8BAF1E60}"
 EndProject

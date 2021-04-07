@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GFramework
+namespace GMessage
 {
     /// <summary>
     /// 消息派发接口，本身监听到具体消息后，会执行消息所绑定的 ICommand 或者通知下一级消息的监听者 IListener

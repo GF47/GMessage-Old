@@ -7,8 +7,8 @@
     <ProjectGuid>{FD4E5A2C-A491-443D-A456-C2587D0AEE1E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GFramework</RootNamespace>
-    <AssemblyName>GFramework</AssemblyName>
+    <RootNamespace>GM</RootNamespace>
+    <AssemblyName>GMessage</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

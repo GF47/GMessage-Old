@@ -1,4 +1,4 @@
-﻿namespace GFramework
+﻿namespace GMessage
 {
     /// <summary>
     /// 消息体接口

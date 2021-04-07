@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GFramework
+namespace GMessage
 {
     /// <summary>
     /// 提供普通的框架内服务，调用者通过服务ID来调用并获取结果

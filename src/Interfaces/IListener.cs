@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GFramework
+namespace GMessage
 {
     /// <summary>
     /// 消息监听接口，当监听到注册过的消息后，执行 Receive(IMessage message) 方法

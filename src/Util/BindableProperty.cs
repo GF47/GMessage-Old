@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GFramework
+namespace GMessage
 {
     /// <summary>
     /// 关联属性，当值 Value 改变时自动触发 ValueChanging

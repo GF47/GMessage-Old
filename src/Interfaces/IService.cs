@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GFramework
+namespace GMessage
 {
     /// <summary>
     /// 框架内服务接口，注册给 Facade，调用者向 Facade 传入服务的ID和具体参数来获取处理后的结果，没事少用

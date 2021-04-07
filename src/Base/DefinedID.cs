@@ -1,4 +1,4 @@
-﻿namespace GFramework
+﻿namespace GMessage
 {
     /// <summary>
     /// 定义消息和服务的静态类，所有的ID都为int常量

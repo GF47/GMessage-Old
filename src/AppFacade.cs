@@ -1,4 +1,4 @@
-﻿namespace GFramework
+﻿namespace GMessage
 {
     /// <summary>
     /// 框架门户实现，提供向具体消息派发者注册、解除、调用消息和命令的方法，以及框架内部服务的注册和调用的方法等

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace GFramework
+namespace GMessage
 {
     /// <summary>
     /// 全局框架内部服务管理器，某个想提供服务（具体方法）的实例可以向管理器注册，调用者通过服务 ID 并传入参数，来获取结果
