@@ -34,16 +34,7 @@
         /// <param name="moduleID">模块(消息派发者)ID</param>
         public override T GetModule<T>(int moduleID)
         {
-            T module = null;
-            switch (moduleID)
-            {
-                case ModuleID.GLOBAL_DISPATCHER:
-                    module = GlobalDispatcher.Instance as T;
-                    break;
-                // HACK 模块如果需要被查找，则在这里指定键值对
-                // 或者直接新建一个字典
-            }
-            return module;
+            return Module.Instance<T>(moduleID);
         }
 
         private void __InitModule()

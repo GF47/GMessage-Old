@@ -7,7 +7,7 @@ namespace GMessage
     /// 抽象的消息派发者，通常是一个具体的模块，所以直接命名为 Module，
     /// 监听到消息后，执行所绑定的 ICommand 或者通知下一级的消息监听者 IListener
     /// </summary>
-    public abstract class Module : IDispatcher
+    public abstract class Module : IDispatcher, IDisposable
     {
         #region 单例
 
@@ -20,9 +20,10 @@ namespace GMessage
         {
             return (_instance.TryGetValue(id, out var module) ? module : Activator.CreateInstance(typeof(T), id)) as T;
         }
+
         private static readonly Dictionary<int, Module> _instance = new Dictionary<int, Module>();
 
-        #endregion
+        #endregion 单例
 
         /// <summary>
         /// 模块ID，不能重复
@@ -32,11 +33,14 @@ namespace GMessage
         /// <summary>
         /// 绑定的命令字典，接收消息后查找具体命令并执行
         /// </summary>
-        protected IDictionary<int, Type> commands;
+        protected IDictionary<int, ICommand> commands;
+
         /// <summary>
         /// 下一级的消息监听者，接收消息后通知已经注册过此消息的监听者
         /// </summary>
         protected IDictionary<IListener, List<int>> listeners;
+
+        private List<IListener> _expectedListeners;
 
         protected readonly object syncLocker = new object(); // 线程锁
 
@@ -48,11 +52,21 @@ namespace GMessage
             ID = id;
             _instance.Add(id, this);
 
-            commands = new Dictionary<int, Type>();
+            commands = new Dictionary<int, ICommand>();
             listeners = new Dictionary<IListener, List<int>>();
+
+            _expectedListeners = new List<IListener>();
         }
 
         ~Module()
+        {
+            commands = null;
+            listeners = null;
+            _expectedListeners = null;
+            Dispose();
+        }
+
+        public void Dispose()
         {
             _instance.Remove(ID);
         }
@@ -76,49 +90,39 @@ namespace GMessage
         /// <param name="message">消息体</param>
         public virtual void Receive(IMessage message)
         {
-            Type expectedCommand = null;
-            List<IListener> expectedListeners = null;
-
+            ICommand command = null;
             lock (syncLocker)
             {
-                if (commands.ContainsKey(message.ID)) { expectedCommand = commands[message.ID]; }
+                if (commands.ContainsKey(message.ID)) { command = commands[message.ID]; }
 
-                expectedListeners = new List<IListener>();
                 foreach (var pair in listeners)
                 {
                     if (pair.Value.Contains(message.ID))
                     {
-                        expectedListeners.Add(pair.Key);
+                        _expectedListeners.Add(pair.Key);
                     }
                 }
             }
 
-            if (expectedCommand != null)
-            {
-                if (Activator.CreateInstance(expectedCommand) is ICommand cmd)
-                {
-                    cmd.Execute(message);
-                }
-            }
+            command?.Execute(message);
 
-            if (expectedListeners != null && expectedListeners.Count > 0)
+            for (int i = 0; i < _expectedListeners.Count; i++)
             {
-                for (int i = 0; i < expectedListeners.Count; i++)
-                {
-                    expectedListeners[i].Receive(message);
-                }
+                _expectedListeners[i].Receive(message);
             }
+            _expectedListeners.Clear();
         }
 
         /// <summary>
         /// 绑定具体的命令和消息
         /// </summary>
-        /// <param name="command">被绑定的命令类型</param>
+        /// <param name="type">被绑定的命令类型</param>
         /// <param name="messageID">被绑定的消息ID</param>
-        public void BindingCommand(Type command, int messageID)
+        public void BindingCommand(Type type, int messageID)
         {
             lock (syncLocker)
             {
+                var command = Activator.CreateInstance(type) as ICommand;
                 if (commands.ContainsKey(messageID)) { commands[messageID] = command; }
                 else { commands.Add(messageID, command); }
             }

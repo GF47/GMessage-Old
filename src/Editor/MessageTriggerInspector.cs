@@ -1,10 +1,11 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace GFramework.Editor.Inspectors
+namespace GMessage.Editor.Inspectors
 {
     [CustomEditor(typeof(MessageTrigger))]
     public class MessageTriggerInspector : UnityEditor.Editor
@@ -25,7 +26,7 @@ namespace GFramework.Editor.Inspectors
             for (int i = 0; i < fields.Length; i++)
             {
                 _moduleIDArray[i] = (int)fields[i].GetRawConstantValue();
-                _moduleNameArray[i] = fields[i].Name;
+                _moduleNameArray[i] = $"[ {fields[i].Name} ] {fields[i].GetCustomAttribute<DescriptionAttribute>()?.Description}";
             }
 
             fields = typeof(DefinedID).GetFields(BindingFlags.Public | BindingFlags.Static);
@@ -37,7 +38,7 @@ namespace GFramework.Editor.Inspectors
             for (int i = 0; i < fields.Length; i++)
             {
                 _messageIDArray[i] = (int)fields[i].GetRawConstantValue();
-                _messageNameArray[i+1] = fields[i].Name;
+                _messageNameArray[i + 1] = $"[ {fields[i].Name} ] {fields[i].GetCustomAttribute<DescriptionAttribute>()?.Description}";
             }
         }
 
@@ -73,7 +74,7 @@ namespace GFramework.Editor.Inspectors
                     EditorUtility.SetDirty(trigger);
                 }
 
-                if(GUILayout.Button("-", EditorStyles.miniButton))
+                if (GUILayout.Button("-", EditorStyles.miniButton))
                 {
                     Undo.RecordObject(trigger, "remove trigger");
                     trigger.Triggers.RemoveAt(i);
@@ -81,7 +82,6 @@ namespace GFramework.Editor.Inspectors
                 }
 
                 EditorGUILayout.EndHorizontal();
-
             }
 
             if (GUILayout.Button("+"))

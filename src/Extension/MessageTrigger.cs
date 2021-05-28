@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace GFramework
+namespace GMessage
 {
     public class MessageTrigger : MonoBehaviour,
         IPointerEnterHandler,
@@ -26,7 +26,7 @@ namespace GFramework
             public EventTriggerType type;
             public int id;
             public string content;
-            public object commonContent;
+            public Func<object> commonContent;
 
             public bool Equals(MessageData b)
             {
@@ -50,7 +50,7 @@ namespace GFramework
             {
                 if (_triggers[i].type == type)
                 {
-                    AppFacade.Instance.SendMessage(_triggers[i].id, this, _triggers[i].commonContent ?? _triggers[i].content, GetModule());
+                    AppFacade.Instance.SendMessage(_triggers[i].id, this, _triggers[i].commonContent == null ? _triggers[i].content : _triggers[i].commonContent(), GetModule());
                 }
             }
         }

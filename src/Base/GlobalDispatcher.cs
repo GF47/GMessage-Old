@@ -10,6 +10,6 @@
         /// </summary>
         public static GlobalDispatcher Instance => Instance<GlobalDispatcher>(ModuleID.GLOBAL_DISPATCHER);
 
-        private GlobalDispatcher(int id) : base(id) { }
+        public GlobalDispatcher(int id) : base(id) { }
     }
 }
