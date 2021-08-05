@@ -44,7 +44,6 @@
     <Compile Include="src\Base\GlobalServices.cs" />
     <Compile Include="src\Base\CommonService.cs" />
     <Compile Include="src\Interfaces\IService.cs" />
-    <Compile Include="src\Util\BindableProperty.cs" />
     <Compile Include="src\Base\DefinedID.cs" />
     <Compile Include="src\Base\Facade.cs" />
     <Compile Include="src\Base\GlobalDispatcher.cs" />
@@ -56,6 +55,7 @@
     <Compile Include="src\Interfaces\IDispatcher.cs" />
     <Compile Include="src\Interfaces\IListener.cs" />
     <Compile Include="src\Interfaces\IMessage.cs" />
+    <Compile Include="src\Util\Bindable.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

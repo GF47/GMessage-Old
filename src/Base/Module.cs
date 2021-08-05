@@ -66,9 +66,9 @@ namespace GMessage
             Dispose();
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
-            _instance.Remove(ID);
+            if (_instance.ContainsKey(ID)) _instance.Remove(ID);
         }
 
         /// <summary>

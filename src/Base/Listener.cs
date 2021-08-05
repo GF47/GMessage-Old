@@ -20,7 +20,7 @@ namespace GMessage
         /// <summary>
         /// 获取自身所监听的消息派发者，一般是具体 Module 的单例或者 GlobalDispatcher 的单例，也可以从 Facade 处通过 ID 来查询获得
         /// </summary>
-        protected abstract T GetDispatcher();
+        public abstract T GetDispatcher();
 
         /// <summary>
         /// 注册自身需要监听的消息

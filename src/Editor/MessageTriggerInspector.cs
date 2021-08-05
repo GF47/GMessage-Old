@@ -19,6 +19,7 @@ namespace GMessage.Editor.Inspectors
         private void OnEnable()
         {
             var fields = typeof(ModuleID).GetFields(BindingFlags.Public | BindingFlags.Static);
+            fields = Array.FindAll(fields, f => f.FieldType == typeof(int));
 
             _moduleIDArray = new int[fields.Length];
             _moduleNameArray = new string[fields.Length];
@@ -30,6 +31,7 @@ namespace GMessage.Editor.Inspectors
             }
 
             fields = typeof(DefinedID).GetFields(BindingFlags.Public | BindingFlags.Static);
+            fields = Array.FindAll(fields, f => f.FieldType == typeof(int));
 
             _messageIDArray = new int[fields.Length];
             _messageNameArray = new string[fields.Length + 1];
@@ -38,7 +40,7 @@ namespace GMessage.Editor.Inspectors
             for (int i = 0; i < fields.Length; i++)
             {
                 _messageIDArray[i] = (int)fields[i].GetRawConstantValue();
-                _messageNameArray[i + 1] = $"[ {fields[i].Name} ] {fields[i].GetCustomAttribute<DescriptionAttribute>()?.Description}";
+                _messageNameArray[i + 1] = $"{fields[i].Name} <---> {fields[i].GetCustomAttribute<DescriptionAttribute>()?.Description}";
             }
         }
 
